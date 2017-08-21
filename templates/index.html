@@ -28,8 +28,8 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="src/jquery-ui-1.11.1/jquery-ui.min.js"></script>
     <script src="src/libraries/dust-js/dust-core-0.3.0.min.js"></script>
     <script src="src/libraries/dust-js/dust-full-0.3.0.min.js"></script>
     <script src="src/libraries/dust-js/dust-helpers.js"></script>
@@ -42,13 +42,13 @@
       $('#formBuilder').formBuilder({
         
         load_url: 'src/json/example.json',
-        save_url: '{{ base_url }}/save',
-        
+        save_url: '{{ url_for("save") }}',
+        /*        
         onSaveForm: function() {
           // redirect to demo page
-          window.location.href = '{{ base_url }}/render';
+          window.location.href = "{{ url_for('render') }}";
         }
-
+        */
       });
 
     </script>
