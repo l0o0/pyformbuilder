@@ -1,15 +1,27 @@
 #!/usr/bin/env python
 
-from flask import Flask, request, Response, render_template, redirect, url_for
+from flask import (Flask, request, Response, render_template, 
+        redirect, url_for)
+from flask.ext.pymongo import PyMongo
+
+
 from config import config
 from formbuilder import formLoader
 import json
 
 app = Flask(__name__, static_folder='src')
+app.config.update(
+    MONGO_HOST='localhost',
+    MONGO_PORT=27017,
+    MONGO_USERNAME='formbase',
+    MONGO_PASSWORD='111111',
+    MONGO_DBNAME='flask'
+)
+
+mongo = PyMongo(app)
 
 app.secret_key = 'Sh3r1n4Mun4F'
 mysession = {}
-
 @app.route('/')
 def index():
 
@@ -17,7 +29,7 @@ def index():
 
 @app.route('/save', methods=['POST'])
 def save():
-    print 'save called'
+    #print 'save called'
     if request.method == 'POST':
         formData = request.form.get('formData')
 
@@ -25,7 +37,9 @@ def save():
             return 'Error processing request'
 
         mysession['form_data'] = formData
-
+        # print formData
+        formDict = json.loads(formData)
+        mongo.db.form.insert_one(formDict)
         return 'OK'
 
 @app.route('/render')

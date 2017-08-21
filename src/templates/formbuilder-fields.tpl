@@ -160,4 +160,4 @@
     </ul>
 
     <button id="save" class="button success">Save Form</button>
-    <button id="view" class="button success" onclick="window.location.replace='http://127.0.0.1:5000/render'">View Form</button>
+    <button id="view" class="button success" onclick="window.open('http://127.0.0.1:5000/render','_blank')">View Form</button>
