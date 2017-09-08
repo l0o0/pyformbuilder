@@ -2,7 +2,7 @@
 
 from flask import (Flask, request, Response, render_template, 
         redirect, url_for)
-from flask.ext.pymongo import PyMongo
+from flask_pymongo import PyMongo
 
 
 from config import config
@@ -10,13 +10,6 @@ from formbuilder import formLoader
 import json
 
 app = Flask(__name__, static_folder='src')
-app.config.update(
-    MONGO_HOST='localhost',
-    MONGO_PORT=27017,
-    MONGO_USERNAME='formbase',
-    MONGO_PASSWORD='111111',
-    MONGO_DBNAME='flask'
-)
 
 mongo = PyMongo(app)
 
@@ -65,4 +58,4 @@ def submit():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run()
+    app.run(host='192.168.1.215')   # set your host
